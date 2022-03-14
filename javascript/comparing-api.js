@@ -22,7 +22,14 @@ class Character{
 
 }
 
+class Creating {
+  displayChosen(){}
+  getButtons(){}
 
+
+}
+
+let creating = new Creating();
 
 //*--------eventlistener dropdown
 document.getElementById("choosingChars").addEventListener("submit", () => {
@@ -31,11 +38,10 @@ chosenCharacters.length = 0;
 renderedDiv.innerHTML = "";
 
 let userChosenOne = dropdown1.value;
-let userChosenTwo = drowdown2.value;
+let userChosenTwo = dropdown2.value;
 
 if(userChosenOne === userChosenTwo){
-  renderedDiv.innerHTML = `<h3>These are not the droids you are looking for.
-  Please choose two different characters!</h3>`
+  renderedDiv.innerHTML = `<h3>These are not the droids you are looking for. Please choose two different characters!</h3>`
 }
 else { 
   //fixing pics:
@@ -59,11 +65,16 @@ getAPI(characterOne).then((data) => {
   //tar bort från arrayen och in i constructorn:
   let characterOne = new Character(characterConst.name, characterConst.gender, characterConst.height, characterConst.mass, characterConst.hair_color, imgCharacterOne)
   chosenCharacters.push(characterOne);
-  creating.displayChosen(characterOne,imgCharacterOne,"first");
+  creating.displayChosen(characterOne,imgCharacterOne);
+  getAPI(characterTwo).then((data) => {
+  let characterConst = data.results.pop();
+  let characterTwo = new Character(characterConst.name, characterConst.gender, characterConst.height, characterConst.mass, characterConst.hair_color, imgCharacterTwo)
+  chosenCharacters.push(characterTwo);
+  creating.displayChosen(characterTwo,imgCharacterTwo);
 })
 })
 
-
+})
 
 async function getAPI(url){
   let result = await fetch(url);
