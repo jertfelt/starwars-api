@@ -69,7 +69,7 @@ class Creating {
   //just nu problem med att läsa - blir undefined eller bara en character. fixa imorgon
   publish(url,character){
     let articleElem = document.createElement("article");
-    articleElem.classList.add("characters--row");
+    articleElem.classList.add("characters");
    
     chosenCharacters.forEach((character) => { 
     console.log(character.name)
@@ -104,7 +104,7 @@ class Creating {
       buttStatus
     )
 
-    renderedDiv.appendChild(buttonDiv);
+    articleElem.appendChild(buttonDiv);
   }
 }
 

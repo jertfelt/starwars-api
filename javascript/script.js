@@ -22,17 +22,18 @@ async getCharacters(){
     console.log(error);
   }
 }  
-
 }
 
 class Create {
   displayCharacterDropDown(characters){
     
     let option = "";
+    
     characters.forEach(character => {
+     
       option += `
       <option id="${character.name}" 
-      value="${character.name}">
+      value="${character.url}">
       ${character.name}
       </option>
       `
@@ -41,32 +42,31 @@ class Create {
     document.getElementById("dropdown2").innerHTML = option;
     document.getElementById("dropdown").innerHTML = option; 
   }
-  displayChosenCharacters(url,sectionname){
-
-    let headline = document.createElement("h2");
-    headline.innerText("These are the droids you are looking for:")
-    let buttonDiv = document.createElement("div");
-    renderedDiv.appendChild(buttonDiv);
-
+  displayChosenCharacters(url,character){
+    let articleElem = document.createElement("article");
+    articleElem.classList.add("characters--row");
    
-    characterSectionRendered.innerHTML = `<img src="${url}" alt="Star Wars icon"`
+    articleElem.innerHTML = `
+    <div class="character--article">
+    <img src="${url}" alt ="Picture of your chosen character">
+    `
+    renderedDiv.appendChild(articleElem);
+  
+    let buttonDiv = document.createElement("div");
+    buttonDiv.innerHTML = `<h3>${character.name}</h3>`
 
     let buttWeight = document.createElement("button");
     let buttGender = document.createElement("button");
     let buttHair = document.createElement("button");
     let buttHeight = document.createElement("button");
     buttHeight.innerText = "Compare height";
-    buttHair.innerText = "Compare haircolors";
+    buttHair.innerText = "Compare hair";
     buttWeight.innerText = "Compare weight";
-    buttGender.innerText = "Compare genders";
+    buttGender.innerText = "Compare gender";
 
     buttonDiv.classList.add("button--comparisons");
-    buttonDiv.append(
-      buttWeight, 
-      buttHeight,
-      buttHair,
-      buttGender
-    )
+    buttonDiv.append(buttGender, buttWeight,buttHeight, buttHair);
+    articleElem.append(buttonDiv);
  
 
    }
@@ -81,9 +81,6 @@ constructor(_name, _gender, _height, _mass, _haircolor, _pictureUrl){
   this.hairColor = _haircolor;
   this._pictureUrl = _pictureUrl;
 }
-
-
-
   compareHeight(item){
     let myHeight = parseInt(item.height);
     let otherHeight = parseInt(this.height);
@@ -94,8 +91,6 @@ constructor(_name, _gender, _height, _mass, _haircolor, _pictureUrl){
       articleElem.innerText = ``;
     }
   }
-  compareHair(item){}
-  compareGender(item){}
   compareWeight(item){
     if(item.mass >= this.mass){
       articleElem.innerText = ``;
@@ -127,49 +122,48 @@ fetching.getCharacters().then(characters => {
 
 
 //*------------Submitting form
-document.getElementById("choosingChars").addEventListener("submit", () => { 
-//inserted because of bug
-  console.log("") 
-  console.log("tryckt")
+document.getElementById("fetchData").addEventListener("click", (event) => { 
 
+event.preventDefault();
   //reading the choices:
   chosenCharacters.length = 0; 
     renderedDiv.innerHTML ="";
     let userChosenOne = dropdown1.value;
     let userChosenTwo = dropdown2.value;
+    let chosenOneName = dropdown1.options[dropdown1.selectedIndex].id;
+    let chosenTwoName = dropdown2.options[dropdown2.selectedIndex].id;
+
     if (userChosenOne === userChosenTwo){
       renderedDiv.innerHTML = `<h3>These are not the droids you are looking for.
       Please choose two different characters!</h3>`
     }
     else {
-      let imgCharacterOne = `./img/${userChosenOne}.png`;
-      let imgCharacterTwo = `./img/${userChosenTwo}.png`;
+      let imgCharacterOne = `./img/${chosenOneName}.png`;
+      let imgCharacterTwo = `./img/${chosenTwoName}.png`;
       console.log(userChosenOne);
     
-    //fixing:
-    userChosenOne = userChosenOne.split("-").join(" ");
-    userChosenTwo = userChosenTwo.split("-").join(" ");
-
-    //getting 
-    let characterOne= `https://swapi.dev/api/people?search=${userChosenOne}`
-    console.log("test" + characterOne);
-    let characterTwo = `https://swapi.dev/api/people?search=${userChosenTwo}`
+   
     
-    getOnlyData(characterOne).then((data) => {
+    getOnlyData(userChosenOne).then((data) => {
         let characterConstructor = data;
-        console.log(characterConstructor);
         let chosenCharacterOne = new Character (characterConstructor.name, characterConstructor.gender, characterConstructor.height, characterConstructor.weight, characterConstructor.hairColor, imgCharacterOne);
-      })
+        console.log(chosenCharacterOne);
+        creating.displayChosenCharacters(imgCharacterOne, chosenCharacterOne);
+      
 
-    getOnlyData(characterTwo).then((data) => {
+    getOnlyData(userChosenTwo).then((data) => {
         let characterConstructor = data;
         let chosenCharacterTwo = new Character (characterConstructor.name, characterConstructor.gender, characterConstructor.height, characterConstructor.weight, characterConstructor.hairColor, imgCharacterTwo);
         console.log(chosenCharacterTwo)
+        creating.displayChosenCharacters(imgCharacterTwo, chosenCharacterTwo);
+        
     })
+   
+    
+  })
     }
-})
 
-    //funkade inte när jag hade den i klass (förmodligen för att jag inte  alltid får till hur man pysslar med .then )
+})
 
 async function getOnlyData (url){
   try{
