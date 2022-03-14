@@ -155,17 +155,17 @@ document.getElementById("choosingChars").addEventListener("submit", () => {
     console.log("test" + characterOne);
     let characterTwo = `https://swapi.dev/api/people?search=${userChosenTwo}`
     
-      getOnlyData(characterOne).then((data) => {
-        let characterConstructor = data.results;
+    getOnlyData(characterOne).then((data) => {
+        let characterConstructor = data;
         console.log(characterConstructor);
         let chosenCharacterOne = new Character (characterConstructor.name, characterConstructor.gender, characterConstructor.height, characterConstructor.weight, characterConstructor.hairColor, imgCharacterOne);
       })
-      getOnlyData(characterTwo).then((data) => {
-        let characterConstructor = data.results;
+
+    getOnlyData(characterTwo).then((data) => {
+        let characterConstructor = data;
         let chosenCharacterTwo = new Character (characterConstructor.name, characterConstructor.gender, characterConstructor.height, characterConstructor.weight, characterConstructor.hairColor, imgCharacterTwo);
-      })
-    
-  
+        console.log(chosenCharacterTwo)
+    })
     }
 })
 
@@ -174,12 +174,14 @@ document.getElementById("choosingChars").addEventListener("submit", () => {
 async function getOnlyData (url){
   try{
   let result = await fetch(url);
-  let data = await result.json();}
+  let data = await result.json();
+  return data;}
   catch(error){
+    console.log(url);
     console.log("getOnlyData fungerar ej")
     console.log(error)
   }
-  return data; }
+ }
 
 
 
