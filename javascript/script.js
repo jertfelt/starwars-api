@@ -158,6 +158,11 @@ document.getElementById("choosingChars").addEventListener("submit", () => {
       getOnlyData(characterOne).then((data) => {
         let characterConstructor = data.results;
         console.log(characterConstructor);
+        let chosenCharacterOne = new Character (characterConstructor.name, characterConstructor.gender, characterConstructor.height, characterConstructor.weight, characterConstructor.hairColor, imgCharacterOne);
+      })
+      getOnlyData(characterTwo).then((data) => {
+        let characterConstructor = data.results;
+        let chosenCharacterTwo = new Character (characterConstructor.name, characterConstructor.gender, characterConstructor.height, characterConstructor.weight, characterConstructor.hairColor, imgCharacterTwo);
       })
     
   
@@ -167,8 +172,13 @@ document.getElementById("choosingChars").addEventListener("submit", () => {
     //funkade inte när jag hade den i klass (förmodligen för att jag inte  alltid får till hur man pysslar med .then )
 
 async function getOnlyData (url){
+  try{
   let result = await fetch(url);
-  let data = await result.json();
+  let data = await result.json();}
+  catch(error){
+    console.log("getOnlyData fungerar ej")
+    console.log(error)
+  }
   return data; }
 
 
