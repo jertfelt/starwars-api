@@ -48,7 +48,7 @@ class Create {
     let buttonDiv = document.createElement("div");
     renderedDiv.appendChild(buttonDiv);
 
-    let characterSectionRendered = document.querySelector(`.${sectionname}`);
+   
     characterSectionRendered.innerHTML = `<img src="${url}" alt="Star Wars icon"`
 
     let buttWeight = document.createElement("button");
