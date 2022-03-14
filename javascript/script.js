@@ -44,7 +44,7 @@ class Create {
   displayChosenCharacters(url,sectionname){
 
     let headline = document.createElement("h2");
-    headline.innerText("This are the droids you are looking for:")
+    headline.innerText("These are the droids you are looking for:")
     let buttonDiv = document.createElement("div");
     renderedDiv.appendChild(buttonDiv);
 
@@ -150,7 +150,7 @@ document.getElementById("choosingChars").addEventListener("submit", () => {
     userChosenOne = userChosenOne.split("-").join(" ");
     userChosenTwo = userChosenTwo.split("-").join(" ");
 
-    //getting pictures:
+    //getting 
     let characterOne= `https://swapi.dev/api/people?search=${userChosenOne}`
     console.log("test" + characterOne);
     let characterTwo = `https://swapi.dev/api/people?search=${userChosenTwo}`
