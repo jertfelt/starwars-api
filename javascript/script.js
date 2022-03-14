@@ -18,6 +18,7 @@ async getCharacters(){
     }) 
     return characters;
   } catch (error) {
+    console.log("Error på första")
     console.log(error);
   }
 }  
@@ -153,25 +154,23 @@ document.getElementById("choosingChars").addEventListener("submit", () => {
     let characterOne= `https://swapi.dev/api/people?search=${userChosenOne}`
     console.log("test" + characterOne);
     let characterTwo = `https://swapi.dev/api/people?search=${userChosenTwo}`
+    
       getOnlyData(characterOne).then((data) => {
         let characterConstructor = data.results;
         console.log(characterConstructor);
       })
-    //fetch and print:
-    
-
     
   
     }
 })
 
     //funkade inte när jag hade den i klass (förmodligen för att jag inte  alltid får till hur man pysslar med .then )
+
 async function getOnlyData (url){
   let result = await fetch(url);
   let data = await result.json();
   return data; }
 
-  // fetching.getCharacters().then(characters => {
 
 
 // document.addEventListener('keydown', function(event){
