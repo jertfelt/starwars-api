@@ -23,58 +23,93 @@ class Character{
 }
 
 class Creating {
-  displayChosen(){}
-  getButtons(){}
+  displayChosen(){
+    let headline = document.createElement("h2");
+    headline.innerText("These are the droids you are looking for:")
+    renderedDiv.appendChild(headline);
+  }
 
+  getButtons(){
+    let buttonDiv = document.createElement("div");
+    renderedDiv.appendChild(buttonDiv);
+    
+    let buttWeight = document.createElement("button");
+    let buttGender = document.createElement("button");
+    let buttHair = document.createElement("button");
+    let buttHeight = document.createElement("button");
+    buttHeight.innerText = "Compare height";
+    buttHair.innerText = "Compare haircolors";
+    buttWeight.innerText = "Compare weight";
+    buttGender.innerText = "Compare genders";
 
+    buttonDiv.classList.add("button--comparisons");
+    buttonDiv.append(
+      buttWeight, 
+      buttHeight,
+      buttHair,
+      buttGender)
+
+  }
 }
 
 let creating = new Creating();
 
-//*--------eventlistener dropdown
-document.getElementById("choosingChars").addEventListener("submit", () => {
-//empty select
-chosenCharacters.length = 0;
-renderedDiv.innerHTML = "";
+function  creatingCharacters(){
+  chosenCharacters.length = 0;
+  renderedDiv.innerHTML = "";
 
 let userChosenOne = dropdown1.value;
 let userChosenTwo = dropdown2.value;
 
 if(userChosenOne === userChosenTwo){
-  renderedDiv.innerHTML = `<h3>These are not the droids you are looking for. Please choose two different characters!</h3>`
+renderedDiv.innerHTML = `<h3>These are not the droids you are looking for. Please choose two different characters!</h3>`
 }
 else { 
-  //fixing pics:
-  let imgCharacterOne = `./img/${userChosenOne}.png`;
-  let imgCharacterTwo = `./img/${userChosenTwo}.png`;
+//fixing pics:
+let imgCharacterOne = `./img/${userChosenOne}.png`;
+let imgCharacterTwo = `./img/${userChosenTwo}.png`;
 
-  console.log(userChosenOne);
+console.log(userChosenOne);
 }
 //splittar till array, sedan gör vi till string:
 userChosenOne = userChosenOne.split("-").join(" ");
 userChosenTwo = userChosenTwo.split("-").join(" ");
 
 //förbereder url-länk till API:
- let characterOne= `https://swapi.dev/api/people?search=${userChosenOne}`
- console.log("test " + characterOne);
- let characterTwo = `https://swapi.dev/api/people?search=${userChosenTwo}`
+let characterOne= `https://swapi.dev/api/people?search=${userChosenOne}`
+console.log("test " + characterOne);
+let characterTwo = `https://swapi.dev/api/people?search=${userChosenTwo}`
 
- //getting API:
+//getting API:
 getAPI(characterOne).then((data) => {
-  let characterConst = data.results.pop(); 
-  //tar bort från arrayen och in i constructorn:
-  let characterOne = new Character(characterConst.name, characterConst.gender, characterConst.height, characterConst.mass, characterConst.hair_color, imgCharacterOne)
-  chosenCharacters.push(characterOne);
-  creating.displayChosen(characterOne,imgCharacterOne);
-  getAPI(characterTwo).then((data) => {
-  let characterConst = data.results.pop();
-  let characterTwo = new Character(characterConst.name, characterConst.gender, characterConst.height, characterConst.mass, characterConst.hair_color, imgCharacterTwo)
-  chosenCharacters.push(characterTwo);
-  creating.displayChosen(characterTwo,imgCharacterTwo);
+let characterConst = data.results.pop(); 
+//tar bort från arrayen och in i constructorn:
+let characterOne = new Character(characterConst.name, characterConst.gender, characterConst.height, characterConst.mass, characterConst.hair_color, imgCharacterOne)
+chosenCharacters.push(characterOne);
+
+creating.displayChosen(characterOne,imgCharacterOne);
+
+getAPI(characterTwo).then((data) => {
+let characterConst = data.results.pop();
+let characterTwo = new Character(characterConst.name, characterConst.gender, characterConst.height, characterConst.mass, characterConst.hair_color, imgCharacterTwo)
+chosenCharacters.push(characterTwo);
+
+creating.displayChosen(characterTwo,imgCharacterTwo);
 })
-})
+}
+)}
+
+
+
+//*--------eventlistener dropdown
+document.getElementById("choosingChars").addEventListener("submit", () => {
+//empty select
+
+creatingCharacters(); 
 
 })
+
+
 
 async function getAPI(url){
   let result = await fetch(url);
