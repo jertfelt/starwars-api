@@ -40,25 +40,25 @@ class Character{
   }
   
   
-  // compareWeight(character){
-  //   let sum ="";
-  //   let result = "";
-  //   if ((parseInt.this.mass) < parseInt(character.mass)){
-  //     sum = parseInt(character.mass) - parseInt(this.mass);
+  compareWeight(character){
+    let sum ="";
+    let result = "";
+    if ((parseInt.this.mass) < parseInt(character.mass)){
+      sum = parseInt(character.mass) - parseInt(this.mass);
 
-  //     result = `<p>${character.name} weighs ${character.mass} kilos. It is more than me. </p>`
-  //   }
-  //   else if (parseInt(this.mass) > parseInt(character.mass)) {
+      result = `<p>${character.name} weighs ${character.mass} kilos. It is more than me. </p>`
+    }
+    else if (parseInt(this.mass) > parseInt(character.mass)) {
 
-  //     sum = parseInt(this.mass) - parseInt(character.mass);
+      sum = parseInt(this.mass) - parseInt(character.mass);
       
-  //     result = `<p>${character.name} weighs ${character.mass} kilos. It is less than me. </p>`;
+      result = `<p>${character.name} weighs ${character.mass} kilos. It is less than me. </p>`;
 
-  //   }
-  //   else {
-  //   result = `<p>${character.name} weighs ${character.mass}. As much as I weigh! MASS BUDDIES!</p>`;
-  //   }
-  // }
+    }
+    else {
+    result = `<p>${character.name} weighs ${character.mass}. As much as I weigh! MASS BUDDIES!</p>`;
+    }
+  }
   compareHair(){}
   
   
@@ -125,9 +125,14 @@ class Create {
     const characterTwoHeightButt = document.getElementById(`${character.name}Height`);
     const characterTwoHairButt = document.getElementById(`${character.name}Hair`);
     const characterTwoGenderButt = document.getElementById(`${character.name}Gender`);
+    console.log(characterOneGenderButt);
     
+
+    //en till funktion, där man tar in chosenCharacterOne och chosenCharacterTwo som paragrafer
     characterTwoWeightButt.addEventListener("click", async (e) => {
-      let result = chosenCharacterOne.compareWeight(chosenCharacterTwo);
+
+      let result = character.compareWeight(character);
+    
 
      resultDiv.innerText = result;
     })
