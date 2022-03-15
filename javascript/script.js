@@ -38,27 +38,72 @@ class Character{
 
   
   comparingWeight(person){
-    
+    console.log(person.mass)
+    let otherCharWeight = parseInt(person.mass)
+    let thisWeight = parseInt(this.mass)
+    console.log(this.mass)
   }
 
   comparingHeight(person){
     console.log(person.height)
-    let otherChar = parseInt(person.height)
+    let otherCharHeight = parseInt(person.height)
     let thisHeight = parseInt(this.height)
     console.log(this.height)
   }
    
   }
 
+  class Comparing {
+    
+//transforming so we can read from the new Characters:
+async  compareHeight(item, character){
+  item.addEventListener("click", () =>{
+    if(character.name === chosenCharacters[0].name){
+      character.comparingHeight(chosenCharacters[1])
+    } else{
+      character.comparingHeight(chosenCharacters[0])
+    }
+  })
+}
+
+async  compareWeight(item, character){
+  item.addEventListener("click", () =>{
+    if(character.name === chosenCharacters[0].name){
+      character.comparingWeight(chosenCharacters[1])
+    } else{
+      character.comparingWeight(chosenCharacters[0])
+    }
+  })
+}
+
+async  compareHairs(item, character){
+  item.addEventListener("click", () =>{
+    if(character.name === chosenCharacters[0].name){
+      character.comparingHair(chosenCharacters[1])
+    } else{
+      character.comparingHair(chosenCharacters[0])
+    }
+  })
+}
+
+async  compareGenders(item, character){
+  item.addEventListener("click", () =>{
+    if(character.name === chosenCharacters[0].name){
+      character.comparingGender(chosenCharacters[1])
+    } else{
+      character.comparingGender(chosenCharacters[0])
+    }
+  })
+}
+
+  }
+
   //creating and displaying:
 class Create {
   //*-----dropdown from fetch:
   displayCharacterDropDown(characters){
-    
     let option = "";
-    
     characters.forEach(character => {
-     
       option += `
       <option id="${character.name}" 
       value="${character.url}">
@@ -76,16 +121,34 @@ class Create {
     articleElem.classList.add("characters--row");
     articleElem.innerHTML = `
     <div class="character--article">
-    <h2>${character.name}</h2>
-    <img src="${url}" alt ="Picture of your chosen character">
-    <div class="faq"
-      id="${character.name}Answer">
-    <p>Compare us, you shall!</p>
-    <div class="button--comparisons">
-    <button class="QuestionCharacter ${character.name}" id="${character.name}Height">Compare height</button>
-    <button class="QuestionCharactere ${character.name}" id="${character.name}Weight">Compare weight</button>
-    <button class="QuestionCharacter ${character.name}" id="${character.name}Gender">Compare gender</button>
-    <button class="Question" id="${character.name}Hair">Compare hair</button>
+      <h2>${character.name}</h2>
+      <img src="${url}" 
+      alt ="Picture of ${character.name}">
+      <div class="faq"
+        id="${character.name}Answer">
+      <p>Compare us, you shall!</p>
+        <div class="button--comparisons">
+
+        <button 
+        class="QuestionCharacter ${character.name}" 
+        id="${character.name}Height">
+        Compare height</button>
+
+        <button
+        class="QuestionCharacter ${character.name}" id="${character.name}Weight">
+        Compare weight</button>
+
+        <button 
+        class="QuestionCharacter ${character.name}" 
+        id="${character.name}Gender">
+        Compare gender</button>
+
+        <button class="Question" 
+        id="${character.name}Hair">
+        Compare hair</button>
+        </div>
+      </div>
+    </div>
     `
     renderedDiv.appendChild(articleElem);
 
@@ -101,7 +164,7 @@ class Create {
     const characterOneHairButt = document.getElementById(`${character.name}Hair`);
     const characterOneGenderButt = document.getElementById(`${character.name}Gender`);
 
-   compareHeight(characterOneHeightButt, character);
+   compare.compareHeight(characterOneHeightButt, character);
   
   //  characterWeightButt.addEventListener("click", async (e) => {
   //   persons.compareWeight(character);
@@ -138,7 +201,7 @@ class Create {
 let persons = new Character();
 let creating = new Create();
 let fetching = new FetchingAPI();
-// let compare = new Comparing();
+let compare = new Comparing();
 
 //*--fetching to dropdown 
 fetching.getCharacters().then(characters => { 

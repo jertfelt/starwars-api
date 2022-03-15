@@ -53,7 +53,7 @@ main{
 }
 
 section {
-  background-color: var(--empireStrikesBackBlue);
+  background-color: var(--starwarsBlack);
   padding:2rem;
   display:flex;
   flex-direction: column;
@@ -61,6 +61,7 @@ section {
   justify-content: center;
   filter: drop-shadow(10px 10px 40px blue);
 }
+
 
 * img {
   border-radius: 29px;
@@ -82,24 +83,23 @@ img:hover{
   align-items: flex-start;
   justify-content: center;
   margin-bottom:1rem;
+ 
 }
 
 select{
   font-family:Verdana, Geneva, Tahoma, sans-serif;
-  padding:0.2rem;
-
-  margin:0.2rem;
+  padding:0.3rem;
+  margin:0.3rem;
+ 
   font-weight: bold;
+  border:none;
+  background-color: var(--aNewHopeYellowPale);
+  color:#101f30;
 }
 
 select option {
   background-color: var(--starwarsLogoYellow);
   font-weight: bold;
-}
-select {
-  border:none;
-  background-color: var(--aNewHopeYellowPale);
-  color:#101f30;
 }
 
 
@@ -108,8 +108,10 @@ select {
   letter-spacing: 1px;
   padding:0.3rem;
   border:none;
-  width:40%;
+  margin-left:0.3rem;
+  text-align: center;
   background-color: var(--aNewHopeYellowPale);
+  margin-top:0.3rem;
 }
 #fetchData:hover{
   background-color: var(--starwarsLogoYellow);
@@ -118,19 +120,21 @@ select {
 
 form{
   display:flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
-label {
-  margin-bottom:0.3rem;
-  margin-top:0.3rem;
+
+label{
+  font-size:18px;
+  margin-left:2px;
 }
 
 footer{
   padding:1rem;
   text-align: center;
 }
+
 
 #inHereTheyShallBe{
 display:flex;
@@ -139,6 +143,7 @@ align-items: center;
 justify-content: center;
 margin-top:2rem;
 width:100%;
+background-color: var(--empireStrikesBackBlue);
 }
 
 .characters--row{
@@ -206,4 +211,9 @@ padding:1rem;
 
 a{
   color: var(--aNewHopeOrange)
+}
+
+.heading{
+  color: var(--starwarsLogoYellow);
+  text-transform: uppercase;
 }
