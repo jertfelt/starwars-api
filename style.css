@@ -1,13 +1,34 @@
+:root {
+  --starwarsWhite: #fcfeff;
+  --starwarsLogoYellow: yellow;
+  --starwarsBlack: black;
+  --starwarsGrey: #656565;
+  --starwarsDarkGrey: #414141;
+  --phantomMenaceOrange: #f29000;
+  --phantomMenaceRed: #911914;
+  --clonesBlue: #9cd0ff;
+  --clonesOrange: #de982e;
+  --clonesDarkBlue: #0c59a5; 
+  --revengeofSithOrange: #fc9134;
+  --revengeofSithRed: #e7531a;
+  --aNewHopeOrange: #e99f6f;
+  --aNewHopeDarkOrange: #b36f35; 
+  --aNewHopeYellowPale: #d7c078; 
+  --empireStrikesBackBlue: #101f30;
+  --empireStrikesBackRed: #af2125;
+
+}
+
 body{
-  background-color: black;
-  color:aliceblue;
+  background-color: var(--starwarsBlack);
+  color:var(--starwarsWhite);
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 
 header{
-  background-color: black;
-  color: white;
+  background-color:  var(--starwarsBlack);
+  color: var(--starwarsWhite);
   font-family: Helvetica, sans-serif;
   font-size:5px;
   padding:1rem;
@@ -24,7 +45,7 @@ main{
   background-size: cover;
   height: 80vh;
   padding: 2rem;
-  color: whitesmoke;
+  color: var(--starwarsWhite);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,18 +53,22 @@ main{
 }
 
 section {
-  background-color: black;
+  background-color: var(--empireStrikesBackBlue);
   padding:2rem;
   display:flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  filter: drop-shadow(10px 10px 40px blue);
 }
 
 * img {
   border-radius: 29px;
-  max-width:300px;
+  max-width:400px;
   filter: grayscale(100%);
+}
+img:hover{
+  filter:grayscale(0%);
 }
 
 .video{
@@ -54,8 +79,9 @@ section {
 .label{
   display:flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  margin-bottom:1rem;
 }
 
 select{
@@ -67,23 +93,38 @@ select{
 }
 
 select option {
-  background-color: yellow;
+  background-color: var(--starwarsLogoYellow);
   font-weight: bold;
 }
-#fetchData{
-  padding:0.2rem;
+select {
   border:none;
-  width:30%;
+  background-color: var(--aNewHopeYellowPale);
+  color:#101f30;
+}
+
+
+#fetchData{
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding:0.3rem;
+  border:none;
+  width:40%;
+  background-color: var(--aNewHopeYellowPale);
 }
 #fetchData:hover{
-  background-color: yellow;
+  background-color: var(--starwarsLogoYellow);
 }
+
 
 form{
   display:flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+}
+label {
+  margin-bottom:0.3rem;
+  margin-top:0.3rem;
 }
 
 footer{
@@ -93,7 +134,7 @@ footer{
 
 #inHereTheyShallBe{
 display:flex;
-flex-direction: column;
+flex-direction: row-reverse;
 align-items: center;
 justify-content: center;
 margin-top:2rem;
@@ -102,7 +143,8 @@ width:100%;
 
 .characters--row{
 display:flex;
-flex-direction: row;justify-content: center;
+flex-direction: row;
+justify-content: center;
 align-items: center;
 margin:1rem;
 padding:1rem;
@@ -113,13 +155,13 @@ padding:1rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-left:2rem;
   text-align: center;
   margin-bottom:1rem;
-
+  width:50%;
 }
 
 .button--comparisons >button{
+ 
   margin:0.4rem;
   padding:0.2rem;
   margin-top:0rem;
@@ -130,10 +172,37 @@ padding:1rem;
   border:none;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
-
-.button--comparisons >button:hover{
-  background-color: yellow;
-  width:100%;
+.button--comparisons >button:first-of-type{
+  background-color: var(--revengeofSithOrange);
+  color: var(--starwarsBlack)
   
 }
+.button--comparisons >button:nth-last-of-type(1){
+  background-color: var(--empireStrikesBackRed);
+  color: var(--starwarsWhite)
+}
+.button--comparisons >button:nth-last-of-type(3){
+  background-color: var(--clonesOrange);
+  color: var(--starwarsBlack)
+}
+.button--comparisons >button:nth-last-of-type(2){
+  background-color: var(--revengeofSithRed);
+  color: var(--starwarsWhite)
+ 
+}
 
+.button--comparisons >button:hover{
+  background-color: var(--starwarsLogoYellow);
+  width:100%;
+  color: var(--starwarsBlack)
+}
+
+.button--comparisons >button:focus{
+  background-color: var(--clonesBlue);
+  width:100%;
+  color: var(--starwarsBlack);
+}
+
+a{
+  color: var(--aNewHopeOrange)
+}

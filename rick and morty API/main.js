@@ -104,7 +104,7 @@ class Creating {
       buttStatus
     )
 
-    articleElem.appendChild(buttonDiv);
+    renderedDiv.appendChild(buttonDiv);
   }
 }
 
