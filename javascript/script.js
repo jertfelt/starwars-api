@@ -24,51 +24,31 @@ async getCharacters(){
 }  
 }
 
+//om tid: lägg in en setTimeOut animation på ovan och den andra 
+
 class Character{
-  constructor(_name, _gender, _height, _mass, _haircolor, _pictureUrl){
-    this.name = _name;
-    this.gender = _gender;
-    this.height = _height;
-    this.mass = _mass;
-    this.hairColor = _haircolor;
-    this._pictureUrl = _pictureUrl;
+  constructor(name, gender, height, mass, hairColor, pictureUrl){
+    this.name = name;
+    this.gender = gender;
+    this.height = height;
+    this.mass = mass;
+    this.hairColor = hairColor;
+    this.pictureUrl = pictureUrl;
   }
 
-  compareHeight(character){
+  
+  comparingWeight(person){
     
-
   }
-  
-  
-  compareWeight(character){
-    let sum ="";
-    let result = "";
-    if ((parseInt.this.mass) < parseInt(character.mass)){
-      sum = parseInt(character.mass) - parseInt(this.mass);
 
-      result = `<p>${character.name} weighs ${character.mass} kilos. It is more than me. </p>`
-    }
-    else if (parseInt(this.mass) > parseInt(character.mass)) {
-
-      sum = parseInt(this.mass) - parseInt(character.mass);
-      
-      result = `<p>${character.name} weighs ${character.mass} kilos. It is less than me. </p>`;
-
-    }
-    else {
-    result = `<p>${character.name} weighs ${character.mass}. As much as I weigh! MASS BUDDIES!</p>`;
-    }
+  comparingHeight(person){
+    console.log(person.height)
+    let otherChar = parseInt(person.height)
+    let thisHeight = parseInt(this.height)
+    console.log(this.height)
   }
-  compareHair(){}
-  
-  
-  compareGender(){
-  
-  }
-  
    
   }
-  
 
   //creating and displaying:
 class Create {
@@ -102,9 +82,9 @@ class Create {
       id="${character.name}Answer">
     <p>Compare us, you shall!</p>
     <div class="button--comparisons">
-    <button class="QuestionCharacterOne" id="${character.name}Height">Compare height</button>
-    <button class="QuestionCharacterOne" id="${character.name}Weight">Compare weight</button>
-    <button class="QuestionCharacterOne" id="${character.name}Gender">Compare gender</button>
+    <button class="QuestionCharacter ${character.name}" id="${character.name}Height">Compare height</button>
+    <button class="QuestionCharactere ${character.name}" id="${character.name}Weight">Compare weight</button>
+    <button class="QuestionCharacter ${character.name}" id="${character.name}Gender">Compare gender</button>
     <button class="Question" id="${character.name}Hair">Compare hair</button>
     `
     renderedDiv.appendChild(articleElem);
@@ -115,31 +95,17 @@ class Create {
 
     const resultDiv = document.createElement("article");
     renderedDiv.appendChild(resultDiv);
-
-    const characterOneWeightButt = document.getElementById(`${character.name}Weight`);
+ 
+    const characterWeightButt = document.getElementById(`${character.name}Weight`);
     const characterOneHeightButt = document.getElementById(`${character.name}Height`);
     const characterOneHairButt = document.getElementById(`${character.name}Hair`);
     const characterOneGenderButt = document.getElementById(`${character.name}Gender`);
 
-    const characterTwoWeightButt = document.getElementById(`${character.name}Weight`);
-    const characterTwoHeightButt = document.getElementById(`${character.name}Height`);
-    const characterTwoHairButt = document.getElementById(`${character.name}Hair`);
-    const characterTwoGenderButt = document.getElementById(`${character.name}Gender`);
-    console.log(characterOneGenderButt);
-    
-
-    //en till funktion, där man tar in chosenCharacterOne och chosenCharacterTwo som paragrafer
-    characterTwoWeightButt.addEventListener("click", async (e) => {
-
-      let result = character.compareWeight(character);
-    
-
-     resultDiv.innerText = result;
-    })
-
-  //   characterOneWeightButt.addEventListener("click", async (e) => {
-  //     resultDiv.innerText = "Hello fatty"
-  //    })
+   compareHeight(characterOneHeightButt, character);
+  
+  //  characterWeightButt.addEventListener("click", async (e) => {
+  //   persons.compareWeight(character);
+  //   })
 
   //    characterOneHeightButt.addEventListener("click", async (e) => {
   //     resultDiv.innerText = "Hello one height"
@@ -169,9 +135,10 @@ class Create {
 
 
 //*--------Loading page
-let character = new Character();
+let persons = new Character();
 let creating = new Create();
 let fetching = new FetchingAPI();
+// let compare = new Comparing();
 
 //*--fetching to dropdown 
 fetching.getCharacters().then(characters => { 
@@ -181,7 +148,6 @@ fetching.getCharacters().then(characters => {
 
 //*------------Submitting form
 document.getElementById("fetchData").addEventListener("click", (event) => { 
-
 event.preventDefault();
   //reading the choices:
   chosenCharacters.length = 0; 
@@ -205,21 +171,63 @@ event.preventDefault();
     //*---fetching characters from URL
     getOnlyData(userChosenOne).then((data) => {
         let characterConstructor = data;
-        let chosenCharacterOne = new Character (characterConstructor.name, characterConstructor.gender, characterConstructor.height, characterConstructor.weight, characterConstructor.hairColor, imgCharacterOne);
-        // console.log(chosenCharacterOne);
+        let chosenCharacterOne = new Character (characterConstructor.name, characterConstructor.gender, characterConstructor.height, characterConstructor.mass, characterConstructor.hair_color, imgCharacterOne);
+        chosenCharacters.push(chosenCharacterOne);
         creating.displayChosenCharacters(imgCharacterOne, chosenCharacterOne);
         creating.buttons(chosenCharacterOne);
-      
+        
+
     getOnlyData(userChosenTwo).then((data) => {
         let characterConstructor = data;
-        let chosenCharacterTwo = new Character (characterConstructor.name, characterConstructor.gender, characterConstructor.height, characterConstructor.weight, characterConstructor.hairColor, imgCharacterTwo);
+        let chosenCharacterTwo = new Character (characterConstructor.name, characterConstructor.gender, characterConstructor.height, characterConstructor.mass, characterConstructor.hair_color, imgCharacterTwo);
+        chosenCharacters.push(chosenCharacterTwo);
         creating.displayChosenCharacters(imgCharacterTwo, chosenCharacterTwo);
-        creating.buttons(chosenCharacterTwo); 
+        creating.buttons(chosenCharacterTwo)
     })
   })
     }
 })
 
+//transforming so we can read from the new Characters:
+async function compareHeight(item, character){
+  item.addEventListener("click", () =>{
+    if(character.name === chosenCharacters[0].name){
+      character.comparingHeight(chosenCharacters[1])
+    } else{
+      character.comparingHeight(chosenCharacters[0])
+    }
+  })
+}
+
+async function compareWeight(item, character){
+  item.addEventListener("click", () =>{
+    if(character.name === chosenCharacters[0].name){
+      character.comparingWeight(chosenCharacters[1])
+    } else{
+      character.comparingWeight(chosenCharacters[0])
+    }
+  })
+}
+
+async function compareHairs(item, character){
+  item.addEventListener("click", () =>{
+    if(character.name === chosenCharacters[0].name){
+      character.comparingHair(chosenCharacters[1])
+    } else{
+      character.comparingHair(chosenCharacters[0])
+    }
+  })
+}
+
+async function compareGenders(item, character){
+  item.addEventListener("click", () =>{
+    if(character.name === chosenCharacters[0].name){
+      character.comparingGender(chosenCharacters[1])
+    } else{
+      character.comparingGender(chosenCharacters[0])
+    }
+  })
+}
 
 
 

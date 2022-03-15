@@ -161,7 +161,6 @@ padding:1rem;
 }
 
 .button--comparisons >button{
- 
   margin:0.4rem;
   padding:0.2rem;
   margin-top:0rem;
@@ -172,6 +171,8 @@ padding:1rem;
   border:none;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
+
+
 .button--comparisons >button:first-of-type{
   background-color: var(--revengeofSithOrange);
   color: var(--starwarsBlack)
