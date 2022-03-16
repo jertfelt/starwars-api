@@ -183,6 +183,7 @@ async compareHeight(item, character){
       resultAnswer.classList.remove("left");
       resultAnswer.classList.add("right");
     }
+    //*---new button:
     creating.chooseNew();
   })
 }
@@ -191,12 +192,16 @@ async compareWeight(item, character){
   item.addEventListener("click", () =>{
     resultAnswer.style.display ="flex";
     if(character.name === chosenCharacters[0].name){ 
+
+      character.comparingWeight(chosenCharacters[1])
+
+    //*---CSS:styling, first mobile and then desktop:
     if (window.screen.width <= 980){
       const resultAnswerNew = resultAnswer;
+
       let articleMobile = document.getElementById(`faq ${chosenCharacters[0].name}`);
       articleMobile.appendChild(resultAnswerNew);
     }
-      character.comparingWeight(chosenCharacters[1])
       resultAnswer.classList.remove("hidden");
       resultAnswer.classList.remove("right");
       resultAnswer.classList.add("left");
@@ -249,6 +254,12 @@ async compareGenders(item, character){
       resultAnswer.style.display ="flex";
       if(character.name === chosenCharacters[0].name){
       character.comparingGender(chosenCharacters[1])
+ 
+      if (window.screen.width <= 980){
+        const resultAnswerNew = resultAnswer;
+        let articleMobile = document.getElementById(`faq ${chosenCharacters[0].name}`);
+        articleMobile.appendChild(resultAnswerNew);
+      }
       resultAnswer.classList.remove("hidden");
       resultAnswer.classList.remove("right");
       resultAnswer.classList.add("left");
@@ -270,6 +281,7 @@ async compareGenders(item, character){
 
 //creating and displaying:
 class Create {
+
   //*-----dropdown from fetch:
   displayCharacterDropDown(characters){
     let option = "";
@@ -357,8 +369,6 @@ class Create {
     })
   }
 } 
-
-
   
 
 //*--------Loading page
@@ -424,7 +434,8 @@ event.preventDefault();
     //*----giving images to character:
     let imgCharacterOne = `./img/${chosenOneName}.png`;
     let imgCharacterTwo = `./img/${chosenTwoName}.png`;
-
+    
+    //*eventuell animation om fetch dröjer
     init();
  
     //*---fetching characters from URL
