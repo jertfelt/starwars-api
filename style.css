@@ -217,3 +217,7 @@ a{
   color: var(--starwarsLogoYellow);
   text-transform: uppercase;
 }
+
+.hidden{
+  display:none;
+}
