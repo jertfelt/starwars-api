@@ -175,8 +175,10 @@ padding:1rem;
   background-color: var(--aNewHopeYellowPale);
   display:flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  max-height: 500px;
+  height:500px;
 }
 
 .button--comparisons{
@@ -247,12 +249,14 @@ a{
 #results{
   color: var(--starwarsWhite);
   padding:2rem;
-  width:100%;
-  max-width:400px;
+  width:70%;
+  margin:1rem;
+  max-width:300px;
   display:flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  
   
 }
 #results >h4{
@@ -260,7 +264,7 @@ a{
   width:80%;
   line-height: 1.4rem;
 }
-#results >button{
+#tryAgain{
   background-color: var(--starwarsLogoYellow);
   padding:0.3rem;
   font-weight: bold;
@@ -268,8 +272,12 @@ a{
   border:none;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   border-radius: 9px;
-  align-self: flex-end;
+  /* align-self: flex-end; */
   margin-right:2rem;
+}
+#tryAgain:hover{
+  background-color: transparent;
+  color: var(--starwarsLogoYellow);
 }
 
 .left{

@@ -159,29 +159,36 @@ comparingHeight(person){
 }
 
 class Comparing { 
+
+classToggle1(){
+    resultAnswer.classList.remove("hidden");
+    resultAnswer.classList.remove("right");
+    resultAnswer.classList.add("left");
+}
+classToggle2(){
+    resultAnswer.classList.remove("hidden");
+    resultAnswer.classList.remove("left");
+    resultAnswer.classList.add("right");
+}
+
+        // if (window.screen.width <= 980){
+      //   const resultAnswerNew = resultAnswer;
+      //   let articleMobile = document.getElementById(`faq ${chosenCharacters[0].name}`);
+      //   articleMobile.appendChild(resultAnswerNew);
+      // }
 async compareHeight(item, character){
   item.addEventListener("click", () =>{
     resultAnswer.style.display ="flex";
     if(character.name === chosenCharacters[0].name){
       character.comparingHeight(chosenCharacters[1])
-      if (window.screen.width <= 980){
-        const resultAnswerNew = resultAnswer;
-        let articleMobile = document.getElementById(`faq ${chosenCharacters[0].name}`);
-        articleMobile.appendChild(resultAnswerNew);
-      }
-      resultAnswer.classList.remove("hidden");
-      resultAnswer.classList.remove("right");
-      resultAnswer.classList.add("left");
+      this.classToggle1();
+      let articleUnder = document.getElementById(`faq ${character.name}`);
+      articleUnder.appendChild(resultAnswer);
     } else{
       character.comparingHeight(chosenCharacters[0])
-      if (window.screen.width <= 980){
-        const resultAnswerNew = resultAnswer;
-        let articleMobile = document.getElementById(`faq ${chosenCharacters[1].name}`);
-        articleMobile.appendChild(resultAnswerNew);
-      }
-      resultAnswer.classList.remove("hidden");
-      resultAnswer.classList.remove("left");
-      resultAnswer.classList.add("right");
+      this.classToggle2();
+      let articleUnder = document.getElementById(`faq ${character.name}`);
+      articleUnder.appendChild(resultAnswer);
     }
     //*---new button:
     creating.chooseNew();
@@ -192,33 +199,17 @@ async compareWeight(item, character){
   item.addEventListener("click", () =>{
     resultAnswer.style.display ="flex";
     if(character.name === chosenCharacters[0].name){ 
-
       character.comparingWeight(chosenCharacters[1])
-
-    //*---CSS:styling, first mobile and then desktop:
-    if (window.screen.width <= 980){
-      const resultAnswerNew = resultAnswer;
-
-      let articleMobile = document.getElementById(`faq ${chosenCharacters[0].name}`);
-      articleMobile.appendChild(resultAnswerNew);
-    }
-      resultAnswer.classList.remove("hidden");
-      resultAnswer.classList.remove("right");
-      resultAnswer.classList.add("left");
+      this.classToggle1();
+      let articleUnder = document.getElementById(`faq ${character.name}`);
+      articleUnder.appendChild(resultAnswer);
     } else{
-
-      if (window.screen.width <= 980){
-        const resultAnswerNew = resultAnswer;
-        let articleMobile = document.getElementById(`faq ${chosenCharacters[1].name}`);
-        articleMobile.appendChild(resultAnswerNew);
-      }
       character.comparingWeight(chosenCharacters[0])
-      resultAnswer.classList.remove("hidden");
-      resultAnswer.classList.remove("left");
-      resultAnswer.classList.add("right");
-    }
+    this.classToggle2();
+    let articleUnder = document.getElementById(`faq ${character.name}`);
+    articleUnder.appendChild(resultAnswer);
     creating.chooseNew();
-  })
+  }})
 }
 
 async compareHairs(item, character){
@@ -226,24 +217,14 @@ async compareHairs(item, character){
     resultAnswer.style.display ="flex";
     if(character.name === chosenCharacters[0].name){
       character.comparingHair(chosenCharacters[1])
-      if (window.screen.width <= 980){
-        const resultAnswerNew = resultAnswer;
-        let articleMobile = document.getElementById(`faq ${chosenCharacters[0].name}`);
-        articleMobile.appendChild(resultAnswerNew);
-      }
-      resultAnswer.classList.remove("hidden");
-      resultAnswer.classList.remove("right");
-      resultAnswer.classList.add("left");
+      this.classToggle1();
+      let articleUnder = document.getElementById(`faq ${character.name}`);
+      articleUnder.appendChild(resultAnswer);
     } else{
       character.comparingHair(chosenCharacters[0])
-      if (window.screen.width <= 980){
-        const resultAnswerNew = resultAnswer;
-        let articleMobile = document.getElementById(`faq ${chosenCharacters[1].name}`);
-        articleMobile.appendChild(resultAnswerNew);
-      }
-      resultAnswer.classList.remove("hidden");
-      resultAnswer.classList.remove("left");
-      resultAnswer.classList.add("right");
+      this.classToggle2();
+      let articleUnder = document.getElementById(`faq ${character.name}`);
+      articleUnder.appendChild(resultAnswer);
     }
     creating.chooseNew();
   })
@@ -254,25 +235,14 @@ async compareGenders(item, character){
       resultAnswer.style.display ="flex";
       if(character.name === chosenCharacters[0].name){
       character.comparingGender(chosenCharacters[1])
- 
-      if (window.screen.width <= 980){
-        const resultAnswerNew = resultAnswer;
-        let articleMobile = document.getElementById(`faq ${chosenCharacters[0].name}`);
-        articleMobile.appendChild(resultAnswerNew);
-      }
-      resultAnswer.classList.remove("hidden");
-      resultAnswer.classList.remove("right");
-      resultAnswer.classList.add("left");
+        this.classToggle1();
+        let articleUnder = document.getElementById(`faq ${character.name}`);  
+        articleUnder.appendChild(resultAnswer);
       } else{
       character.comparingGender(chosenCharacters[0])
-      if (window.screen.width <= 980){
-        const resultAnswerNew = resultAnswer;
-        let articleMobile = document.getElementById(`faq ${chosenCharacters[1].name}`);
-        articleMobile.appendChild(resultAnswerNew);
-      }
-      resultAnswer.classList.remove("hidden");
-      resultAnswer.classList.remove("left");
-      resultAnswer.classList.add("right");
+        this.classToggle2();
+        let articleUnder = document.getElementById(`faq ${character.name}`);
+        articleUnder.appendChild(resultAnswer);
       }
       creating.chooseNew();
     })
@@ -351,11 +321,10 @@ class Create {
   }
   //*--try again button
   chooseNew(){
-    let tryAgain = document.createElement("button");
-    
-    resultAnswer.appendChild(tryAgain);
-    tryAgain.innerText = "Try Someone Else"
+    let tryAgain = document.getElementById("tryAgain");
     tryAgain.classList.add("button--tryagain");
+    tryAgain.classList.remove("hidden");
+
     tryAgain.addEventListener("click", (event) => {
       event.preventDefault();
       submitButton.classList.remove("hidden");
@@ -366,6 +335,8 @@ class Create {
       resultAnswer.style.display ="none";
       renderedDiv.style.display ="none";
       submitButton.removeAttribute("disabled");
+      tryAgain.classList.remove("button--tryagain");
+      tryAgain.classList.add("hidden");
     })
   }
 } 
@@ -440,10 +411,12 @@ event.preventDefault();
  
     //*---fetching characters from URL
   fetching.getOnlyData(userChosenOne).then((data) => {
+    console.log(userChosenOne);
     preload.classList.add("hidden");
     renderedDiv.innerHTML ="";
     let characterConstructor = data;
     let chosenCharacterOne = new Character (characterConstructor.name, characterConstructor.gender, characterConstructor.height, characterConstructor.mass, characterConstructor.hair_color, imgCharacterOne);
+    console.log(chosenCharacterOne);
     //push it and then just array it so I can get my arrayfunctions
     chosenCharacters.push(chosenCharacterOne);
 
@@ -452,6 +425,7 @@ event.preventDefault();
     form.classList.add("hidden");
     loading.classList.add("hidden");
     creating.displayChosenCharacters(imgCharacterOne, chosenCharacterOne);
+   
     creating.buttons(chosenCharacterOne);
     
 
