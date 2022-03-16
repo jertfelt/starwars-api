@@ -8,6 +8,7 @@ let renderedDiv = document.getElementById("inHereTheyShallBe");
 let form = document.querySelector(".choose");
 let resultAnswer = document.getElementById("results");
 
+
 //loving me some class:
 class FetchingAPI{  
 async getCharacters(){
@@ -50,6 +51,7 @@ comparingHair(person){
     resultAnswer.classList.remove("hidden");
     let otherCharHair = person.hairColor;
     resultAnswer.classList.add("answered");
+   
     if (otherCharHair === "n/a"){
       if (this.hairColor === "none" || this.hairColor === "n/a"){
         resultAnswer.innerHTML=`
@@ -65,16 +67,16 @@ comparingHair(person){
     else if (this.hairColor === "none" || this.hairColor === "n/a"){
       if (otherCharHair === "n/a" || otherCharHair === "none"){
         resultAnswer.innerHTML=`
-        <h3>${this.name}:</h3><br>
+        <h3>${this.name}:</h3>
         <h4>"None of us has any hair"</h4>`
       }
       else {
-        resultAnswer.innerHTML=`<h3>${this.name}:</h3> <br>
+        resultAnswer.innerHTML=`<h3>${this.name}:</h3> 
         <h4>"I have no hair, ${person.name} does have ${otherCharHair} hair."</h4>`
       }
     }
     else{
-      resultAnswer.innerHTML=`<h3>${this.name}:</h3><br>
+      resultAnswer.innerHTML=`<h3>${this.name}:</h3>
       <h4>" ${person.name} does have ${otherCharHair} hair and I have lovely ${this.hairColor} hair."</h4>`
     }
    
@@ -88,25 +90,25 @@ comparingGender(person){
  
     if (otherCharGender === "n/a" || thisGender === "n/a"){
       if (otherCharGender === "n/a" && thisGender === "n/a"){
-        resultAnswer.innerHTML=`<h3>${this.name}:</h3><br>
+        resultAnswer.innerHTML=`<h3>${this.name}:</h3>
         <h4>"Gender is such a human construction, is it not? We AI do not dabble into this."</h4>`
       }
       else if (otherCharGender === "n/a"){
-        resultAnswer.innerHTML=`<h3>${this.name}:</h3><br>
+        resultAnswer.innerHTML=`<h3>${this.name}:</h3>
         <h4>"I am ${this.gender}, but my robot friend ${person.name} here has no gender."</h4>`
       }
       else if (thisGender === "n/a"){
-        resultAnswer.innerHTML=`<h3>${this.name}:</h3><br>
+        resultAnswer.innerHTML=`<h3>${this.name}:</h3>
         <h4>"I have no gender. But ${person.name} is supposed to be a ${otherCharGender}."</h4>`
       }
     }
     else {
       if (thisGender === otherCharGender && thisGender !== "n/a"){
-        resultAnswer.innerHTML=`<h3>${this.name}:</h3><br>
+        resultAnswer.innerHTML=`<h3>${this.name}:</h3>
         <h4>"Both ${person.name} and I were born as ${thisGender}, and are defined by the society as ${otherCharGender}."</h4>`
       }
       else if (thisGender !== otherCharGender){
-      resultAnswer.innerHTML=`<h3>${this.name}:</h3><br>
+      resultAnswer.innerHTML=`<h3>${this.name}:</h3>
       <h4>"I was born as a ${thisGender}. ${person.name} is defined by the society as a ${otherCharGender}."</h4>`}
     }
 
@@ -118,18 +120,19 @@ comparingWeight(person){
     let otherCharWeight = parseInt(person.mass)
     let thisWeight = parseInt(this.mass)
     
-  resultAnswer.classList.add("answered");
     if (otherCharWeight < thisWeight){
       let weightResult = (thisWeight - otherCharWeight);
-      resultAnswer.innerHTML=`<h3>${this.name}:</h3><br>
+      resultAnswer.innerHTML=`<h3>${this.name}:</h3>
       <h4>"I weigh ${this.mass} kilos and ${person.name} weights ${person.mass} kilos. I am heavier, with ${weightResult} kilos difference."</h4>`}
    
     else if (otherCharWeight > thisWeight){
       let weightResult = (otherCharWeight - thisWeight);
-      resultAnswer.innerHTML=`<h3>${this.name}:</h3><br><h4>"I weigh ${this.mass} kilos and ${person.name} weights ${person.mass} kilos. I am therefore lighter with ${weightResult} kilos difference."</h4>`
+      resultAnswer.innerHTML=`<h3>${this.name}:</h3>
+      <h4>"I weigh ${this.mass} kilos and ${person.name} weights ${person.mass} kilos. I am therefore lighter with ${weightResult} kilos difference."</h4>`
     }
     else {
-      resultAnswer.innerHTML=`<h3>${this.name}:</h3><br><h4>"I weigh ${this.mass} kilos and ${person.name} weights ${person.mass} kilos. We share the same weight!"</h4>`
+      resultAnswer.innerHTML=`<h3>${this.name}:</h3>
+      <h4>"I weigh ${this.mass} kilos and ${person.name} weights ${person.mass} kilos. We share the same weight!"</h4>`
     }
 }
 
@@ -139,15 +142,18 @@ comparingHeight(person){
     let thisHeight = parseInt(this.height)
     if (otherCharHeight < thisHeight){
       let heightResult = (thisHeight - otherCharHeight);
-    resultAnswer.innerHTML=`<h3>${this.name}:</h3><br><h4>"I am ${thisHeight}cm tall, and ${person.name} is ${otherCharHeight} cm tall. I am therefore taller with ${heightResult} centimeters difference."</h4>`
+    resultAnswer.innerHTML=`<h3>${this.name}:</h3>
+    <h4>"I am ${thisHeight}cm tall, and ${person.name} is ${otherCharHeight} cm tall. I am therefore taller with ${heightResult} centimeters difference."</h4>`
     }
     else if (otherCharHeight > thisHeight){
       let heightResult = (otherCharHeight -thisHeight);
 
-      resultAnswer.innerHTML=`<h3>${this.name}:</h3><br><h4>"I am ${thisHeight}cm tall, and ${person.name} is ${otherCharHeight} cm tall. ${person.name} is ${heightResult} cm taller than me."</h4>`
+      resultAnswer.innerHTML=`<h3>${this.name}:</h3>
+      <h4>"I am ${thisHeight}cm tall, and ${person.name} is ${otherCharHeight} cm tall. ${person.name} is ${heightResult} cm taller than me."</h4>`
     }
     else {
-      resultAnswer.innerHTML=`<h3>${this.name}:</h3><br><h4>"I am ${thisHeight}cm tall, and ${person.name} is ${otherCharHeight} cm tall. We are then of the same height!"</h4>`
+      resultAnswer.innerHTML=`<h3>${this.name}:</h3>
+      <h4>"I am ${thisHeight}cm tall, and ${person.name} is ${otherCharHeight} cm tall. We are then of the same height!"</h4>`
     }
   }
 }
@@ -155,10 +161,27 @@ comparingHeight(person){
 class Comparing { 
 async compareHeight(item, character){
   item.addEventListener("click", () =>{
+    resultAnswer.style.display ="flex";
     if(character.name === chosenCharacters[0].name){
       character.comparingHeight(chosenCharacters[1])
+      if (window.screen.width <= 980){
+        const resultAnswerNew = resultAnswer;
+        let articleMobile = document.getElementById(`faq ${chosenCharacters[0].name}`);
+        articleMobile.appendChild(resultAnswerNew);
+      }
+      resultAnswer.classList.remove("hidden");
+      resultAnswer.classList.remove("right");
+      resultAnswer.classList.add("left");
     } else{
       character.comparingHeight(chosenCharacters[0])
+      if (window.screen.width <= 980){
+        const resultAnswerNew = resultAnswer;
+        let articleMobile = document.getElementById(`faq ${chosenCharacters[1].name}`);
+        articleMobile.appendChild(resultAnswerNew);
+      }
+      resultAnswer.classList.remove("hidden");
+      resultAnswer.classList.remove("left");
+      resultAnswer.classList.add("right");
     }
     creating.chooseNew();
   })
@@ -166,10 +189,28 @@ async compareHeight(item, character){
 
 async compareWeight(item, character){
   item.addEventListener("click", () =>{
-    if(character.name === chosenCharacters[0].name){
+    resultAnswer.style.display ="flex";
+    if(character.name === chosenCharacters[0].name){ 
+    if (window.screen.width <= 980){
+      const resultAnswerNew = resultAnswer;
+      let articleMobile = document.getElementById(`faq ${chosenCharacters[0].name}`);
+      articleMobile.appendChild(resultAnswerNew);
+    }
       character.comparingWeight(chosenCharacters[1])
+      resultAnswer.classList.remove("hidden");
+      resultAnswer.classList.remove("right");
+      resultAnswer.classList.add("left");
     } else{
+
+      if (window.screen.width <= 980){
+        const resultAnswerNew = resultAnswer;
+        let articleMobile = document.getElementById(`faq ${chosenCharacters[1].name}`);
+        articleMobile.appendChild(resultAnswerNew);
+      }
       character.comparingWeight(chosenCharacters[0])
+      resultAnswer.classList.remove("hidden");
+      resultAnswer.classList.remove("left");
+      resultAnswer.classList.add("right");
     }
     creating.chooseNew();
   })
@@ -177,10 +218,27 @@ async compareWeight(item, character){
 
 async compareHairs(item, character){
   item.addEventListener("click", () =>{
+    resultAnswer.style.display ="flex";
     if(character.name === chosenCharacters[0].name){
       character.comparingHair(chosenCharacters[1])
+      if (window.screen.width <= 980){
+        const resultAnswerNew = resultAnswer;
+        let articleMobile = document.getElementById(`faq ${chosenCharacters[0].name}`);
+        articleMobile.appendChild(resultAnswerNew);
+      }
+      resultAnswer.classList.remove("hidden");
+      resultAnswer.classList.remove("right");
+      resultAnswer.classList.add("left");
     } else{
       character.comparingHair(chosenCharacters[0])
+      if (window.screen.width <= 980){
+        const resultAnswerNew = resultAnswer;
+        let articleMobile = document.getElementById(`faq ${chosenCharacters[1].name}`);
+        articleMobile.appendChild(resultAnswerNew);
+      }
+      resultAnswer.classList.remove("hidden");
+      resultAnswer.classList.remove("left");
+      resultAnswer.classList.add("right");
     }
     creating.chooseNew();
   })
@@ -188,10 +246,22 @@ async compareHairs(item, character){
 
 async compareGenders(item, character){
     item.addEventListener("click", () =>{
+      resultAnswer.style.display ="flex";
       if(character.name === chosenCharacters[0].name){
       character.comparingGender(chosenCharacters[1])
+      resultAnswer.classList.remove("hidden");
+      resultAnswer.classList.remove("right");
+      resultAnswer.classList.add("left");
       } else{
       character.comparingGender(chosenCharacters[0])
+      if (window.screen.width <= 980){
+        const resultAnswerNew = resultAnswer;
+        let articleMobile = document.getElementById(`faq ${chosenCharacters[1].name}`);
+        articleMobile.appendChild(resultAnswerNew);
+      }
+      resultAnswer.classList.remove("hidden");
+      resultAnswer.classList.remove("left");
+      resultAnswer.classList.add("right");
       }
       creating.chooseNew();
     })
@@ -219,12 +289,14 @@ class Create {
   displayChosenCharacters(url,character){
     let articleElem = document.createElement("article");
     articleElem.classList.add("characters--row");
+    articleElem.setAttribute("id", `${character.name}`)
     articleElem.innerHTML = `
-    <div class="character--article">
+    <div class="character--article ${character.name}">
       <h2>${character.name}</h2>
       <img src="${url}" 
       alt ="Picture of ${character.name}">
-      <div class="faq ${character.name}">
+      <div class="faq ${character.name}"
+      id = "faq ${character.name}">
       <p>Compare us, you shall!</p>
         <div class="button--comparisons">
 
@@ -250,8 +322,8 @@ class Create {
     </div>
     `
     renderedDiv.appendChild(articleElem);
-
-   }
+  }
+   
   //*--giving commands to buttons:
    buttons(character){
     const characterOneWeightButt = document.getElementById(`${character.name}Weight`);
@@ -268,19 +340,20 @@ class Create {
   //*--try again button
   chooseNew(){
     let tryAgain = document.createElement("button");
+    
     resultAnswer.appendChild(tryAgain);
-    tryAgain.innerText = "Try again"
+    tryAgain.innerText = "Try Someone Else"
     tryAgain.classList.add("button--tryagain");
     tryAgain.addEventListener("click", (event) => {
       event.preventDefault();
       submitButton.classList.remove("hidden");
       form.classList.remove("hidden");
-      resultAnswer.innerHTML="";
+      resultAnswer.classList.add("black");
+      resultAnswer.classList.remove("right", "left");
       resultAnswer.classList.add("hidden");
-      const takeAway =  document.querySelector("article:first-child");
-      const takeAway2 =  document.querySelector("article:last-child");
-      renderedDiv.removeChild(takeAway);
-      renderedDiv.removeChild(takeAway2);
+      resultAnswer.style.display ="none";
+      renderedDiv.style.display ="none";
+      submitButton.removeAttribute("disabled");
     })
   }
 } 
@@ -300,40 +373,34 @@ const preload = document.getElementById("preload");
 const preloadContent = document.querySelector(".spinnerloading");
 const loading = document.getElementById("loadingChars");
 const loaderChar = document.getElementById("spinner");
-const quotes = ["Do. Or do not. There is no try. - Yoda", "May the Force be with you.- Obi-Wan Kenobi", "Your focus determines your reality. - Qui-Gon Jinn", "Never tell me the odds!- Han Solo", "I find your lack of faith disturbing. - Darth Vader", "I’m one with the Force. The Force is with me - Chirrut Îmwe", "Chewie, we’re home. - Han Solo"];
+const quotes = ["Do. Or do not. There is no try. - Yoda", "May the Force be with you. - Obi-Wan Kenobi", "Your focus determines your reality. - Qui-Gon Jinn", "Never tell me the odds! - Han Solo", "I find your lack of faith disturbing. - Darth Vader", "I’m one with the Force. The Force is with me - Chirrut Îmwe", "Chewie, we’re home. - Han Solo"];
 
 const interval = 2000;
 const loadQuotes = (arr) => {
+
   setInterval(() => {
     preloadContent.innerText = arr [Math.floor(Math.random() * arr.length)];
   }, interval)
 }
 const init = () => {
  loadQuotes(quotes);
+ renderedDiv.innerHTML =`<h3>Loading...</h3>`
 }
-const loadQuotesWhileCharacters = (arr) => {
-  setInterval(() => {
-    arr [Math.floor(Math.random() * arr.length)];
-  }, interval)
-}
-const load = () => {
-  loadQuotesWhileCharacters(quotes);
-}
-
 init();
 
 //*--fetching to dropdown 
 fetching.getCharacters().then(characters => { 
   preload.classList.add("hidden");
+  renderedDiv.innerHTML ="";
   creating.displayCharacterDropDown(characters)
 });
-
 
 //*------------Submitting form
 const submitButton = document.getElementById("fetchData");
 
 submitButton.addEventListener("click", (event) => { 
 event.preventDefault();
+
   //reading the choices:
   chosenCharacters.length = 0; 
     renderedDiv.innerHTML ="";
@@ -351,17 +418,19 @@ event.preventDefault();
     }
 
     else {
+      renderedDiv.style.display ="flex";
+      submitButton.setAttribute("disabled","disabled");
+      resultAnswer.classList.remove("black");
     //*----giving images to character:
     let imgCharacterOne = `./img/${chosenOneName}.png`;
     let imgCharacterTwo = `./img/${chosenTwoName}.png`;
 
-    //*setTimeout while waiting:
-    const loading = document.getElementById("loadingChars");
-    loading.classList.remove("hidden");
-    load();
+    init();
  
     //*---fetching characters from URL
   fetching.getOnlyData(userChosenOne).then((data) => {
+    preload.classList.add("hidden");
+    renderedDiv.innerHTML ="";
     let characterConstructor = data;
     let chosenCharacterOne = new Character (characterConstructor.name, characterConstructor.gender, characterConstructor.height, characterConstructor.mass, characterConstructor.hair_color, imgCharacterOne);
     //push it and then just array it so I can get my arrayfunctions

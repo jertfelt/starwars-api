@@ -14,28 +14,25 @@
     <h1>Trivia</h1>
   </header>
   <main>
-
-    <div id="preload">
-      <div class="spinnerloading">
-        </div>
-    </div>
-
     <div class="wrapper">
     <section>
       <div class="choose">
       <h2 class="heading">Choose characters here:</h2>
       <form id="choosingChars">
         <span class="label">
-        <label for="character1" >Character 1:
+        <label for="character1" 
+        class="label--one"
+        >Character 1:
         </label>
-        <select id="dropdown" class="dropdown">  
+        <select id="dropdown" class="dropdown--one">  
         <option>First character</option> 
         </select>
       </span>
         <span class="label">
-        <label for="character2" >Character 2:
+        <label class="label--two"
+        for="character2" >Character 2:
         </label>
-        <select id="dropdown2" class="dropdown">
+        <select id="dropdown2" class="dropdown--two">
           <option>Another character</option> 
         </select>
       </span>
@@ -48,13 +45,16 @@
          
       </span>
     </div>
-    <article id="inHereTheyShallBe">
-    
-         
-    </article>
-    <article id="results">
-
+    <article id="inHereTheyShallBe"> 
+      <div id="preload">
+        <div class="preload spinnerloading">
+          </div>
+      </div>
     </article>  
+      <article id="results"
+      class="hidden">
+    
+      </article>  
   </section>
   </div>
   </main>
