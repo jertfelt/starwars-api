@@ -47,8 +47,18 @@ class Character{
     this.pictureUrl = pictureUrl;
   }
 
+showingAndHidingResults(person){
+  let articleUnder = document.getElementById(`faq ${this.name}`);
+  let hidethisGif = document.getElementById(`${this.name}GIF`);
+  let showotherGif = document.getElementById(`${person.name}GIF`);
+  showotherGif.classList.remove("hidden");
+  hidethisGif.classList.add("hidden");
+  articleUnder.appendChild(resultAnswer);
+}  
+
 comparingHair(person){
     resultAnswer.classList.remove("hidden");
+    this.showingAndHidingResults(person);
     let otherCharHair = person.hairColor;
     resultAnswer.classList.add("answered");
    
@@ -84,6 +94,7 @@ comparingHair(person){
 
 comparingGender(person){
     resultAnswer.classList.remove("hidden");
+    this.showingAndHidingResults(person);
     let otherCharGender = person.gender;
     let thisGender = this.gender;
     resultAnswer.classList.add("answered");
@@ -117,6 +128,7 @@ comparingGender(person){
 comparingWeight(person){
    
   resultAnswer.classList.remove("hidden");
+  this.showingAndHidingResults(person);
     let otherCharWeight = parseInt(person.mass)
     let thisWeight = parseInt(this.mass)
     
@@ -138,8 +150,10 @@ comparingWeight(person){
 
 comparingHeight(person){
     resultAnswer.classList.remove("hidden");
+    this.showingAndHidingResults(person);
     let otherCharHeight = parseInt(person.height)
     let thisHeight = parseInt(this.height)
+
     if (otherCharHeight < thisHeight){
       let heightResult = (thisHeight - otherCharHeight);
     resultAnswer.innerHTML=`<h3>${this.name}:</h3>
@@ -171,24 +185,18 @@ classToggle2(){
     resultAnswer.classList.add("right");
 }
 
-        // if (window.screen.width <= 980){
-      //   const resultAnswerNew = resultAnswer;
-      //   let articleMobile = document.getElementById(`faq ${chosenCharacters[0].name}`);
-      //   articleMobile.appendChild(resultAnswerNew);
-      // }
 async compareHeight(item, character){
   item.addEventListener("click", () =>{
     resultAnswer.style.display ="flex";
     if(character.name === chosenCharacters[0].name){
       character.comparingHeight(chosenCharacters[1])
       this.classToggle1();
-      let articleUnder = document.getElementById(`faq ${character.name}`);
-      articleUnder.appendChild(resultAnswer);
+   
     } else{
       character.comparingHeight(chosenCharacters[0])
       this.classToggle2();
-      let articleUnder = document.getElementById(`faq ${character.name}`);
-      articleUnder.appendChild(resultAnswer);
+     
+      
     }
     //*---new button:
     creating.chooseNew();
@@ -201,13 +209,12 @@ async compareWeight(item, character){
     if(character.name === chosenCharacters[0].name){ 
       character.comparingWeight(chosenCharacters[1])
       this.classToggle1();
-      let articleUnder = document.getElementById(`faq ${character.name}`);
-      articleUnder.appendChild(resultAnswer);
+    
+    
     } else{
       character.comparingWeight(chosenCharacters[0])
     this.classToggle2();
-    let articleUnder = document.getElementById(`faq ${character.name}`);
-    articleUnder.appendChild(resultAnswer);
+    
     creating.chooseNew();
   }})
 }
@@ -218,13 +225,11 @@ async compareHairs(item, character){
     if(character.name === chosenCharacters[0].name){
       character.comparingHair(chosenCharacters[1])
       this.classToggle1();
-      let articleUnder = document.getElementById(`faq ${character.name}`);
-      articleUnder.appendChild(resultAnswer);
+      
     } else{
       character.comparingHair(chosenCharacters[0])
       this.classToggle2();
-      let articleUnder = document.getElementById(`faq ${character.name}`);
-      articleUnder.appendChild(resultAnswer);
+     
     }
     creating.chooseNew();
   })
@@ -236,13 +241,12 @@ async compareGenders(item, character){
       if(character.name === chosenCharacters[0].name){
       character.comparingGender(chosenCharacters[1])
         this.classToggle1();
-        let articleUnder = document.getElementById(`faq ${character.name}`);  
-        articleUnder.appendChild(resultAnswer);
+       
+
       } else{
       character.comparingGender(chosenCharacters[0])
         this.classToggle2();
-        let articleUnder = document.getElementById(`faq ${character.name}`);
-        articleUnder.appendChild(resultAnswer);
+        
       }
       creating.chooseNew();
     })
@@ -273,15 +277,16 @@ class Create {
     articleElem.classList.add("characters--row");
     articleElem.setAttribute("id", `${character.name}`)
     articleElem.innerHTML = `
-    <div class="character--article ${character.name}">
+    <article class="character--article ${character.name}">
       <h2>${character.name}</h2>
       <img src="${url}" 
       alt ="Picture of ${character.name}">
+
       <div class="faq ${character.name}"
       id = "faq ${character.name}">
       <p>Compare us, you shall!</p>
-        <div class="button--comparisons">
 
+        <div class="button--comparisons">
         <button 
         class="QuestionCharacter ${character.name}" 
         id="${character.name}Height">
@@ -300,8 +305,15 @@ class Create {
         id="${character.name}Hair">
         Compare hair</button>
         </div>
+        <div id="${character.name}GIF" class="extraimg">
+        <img src="img/${character.name}.gif"
+        class="filler"
+        alt="${character.name}">
       </div>
-    </div>
+
+      </div>
+      
+    </article>
     `
     renderedDiv.appendChild(articleElem);
   }
