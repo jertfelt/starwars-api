@@ -242,9 +242,7 @@ a{
   text-transform: uppercase;
 }
 
-.hidden{
-  display:none;
-}
+
 
 #results{
   color: var(--starwarsWhite);
@@ -384,4 +382,8 @@ a{
   .hidden{
     display: none;
   }
+}
+
+.hidden{
+  display:none;
 }
