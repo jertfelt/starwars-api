@@ -32,6 +32,7 @@ Vem som väger mest
 
 Eller:
 VG-krav 3 - Skapa fyra knappar under varje karaktär - När de klickas på, ska karaktären besvara frågor om den andre karaktären. 
+
 Varje knapp ska köra en metod som definieras i din Character-klass.
 Frågorna ska besvaras i en textbox under respektive karaktär.
 T.ex ska du under Karaktär 1 ha knappar där hen besvarar följande frågor om Karaktär 2:

@@ -24,7 +24,6 @@ async getCharacters(){
     console.log(error);
   }
 }  
-
 async getOnlyData (url){
   try{
   let result = await fetch(url);
@@ -35,10 +34,7 @@ async getOnlyData (url){
     console.log(error)
   }
 }
-
 }
-
-//om tid: lägg in en setTimeOut animation på ovan och den andra 
 
 class Character{
   constructor(name, gender, height, mass, hairColor, pictureUrl){
@@ -50,95 +46,113 @@ class Character{
     this.pictureUrl = pictureUrl;
   }
 
-  comparingHair(person){
+comparingHair(person){
+    resultAnswer.classList.remove("hidden");
     let otherCharHair = person.hairColor;
     resultAnswer.classList.add("answered");
-    if (otherCharHair === "n/a" || this.hairColor === "none"){
+    if (otherCharHair === "n/a"){
       if (this.hairColor === "none" || this.hairColor === "n/a"){
-        resultAnswer.innerHTML="<h4>Sadly,none of us has any hair</h4>"
+        resultAnswer.innerHTML=`
+        <h3>${this.name}:</h3>
+        <h4>"Sadly, none of us has any hair"</h4>`
       }
       else {
-        resultAnswer.innerHTML=`<h4>I have ${this.hairColor} hair, ${person.name} does not</h4>`
+        resultAnswer.innerHTML=`
+        <h3>${this.name}:</h3>
+        <h4>"I have ${this.hairColor} hair, ${person.name} does not have any hair."</h4>`
       }
     }
     else if (this.hairColor === "none" || this.hairColor === "n/a"){
       if (otherCharHair === "n/a" || otherCharHair === "none"){
-        resultAnswer.innerHTML="<h4>None of us has any hair</h4>"
+        resultAnswer.innerHTML=`
+        <h3>${this.name}:</h3><br>
+        <h4>"None of us has any hair"</h4>`
       }
       else {
-        resultAnswer.innerHTML=`<h4>I have no hair, ${person.name} does have ${otherCharHair} hair.</h4>`
+        resultAnswer.innerHTML=`<h3>${this.name}:</h3> <br>
+        <h4>"I have no hair, ${person.name} does have ${otherCharHair} hair."</h4>`
       }
     }
     else{
-      resultAnswer.innerHTML=`<h4> ${person.name} does have ${otherCharHair} hair and I have lovely ${this.hairColor} hair. </h4>`
+      resultAnswer.innerHTML=`<h3>${this.name}:</h3><br>
+      <h4>" ${person.name} does have ${otherCharHair} hair and I have lovely ${this.hairColor} hair."</h4>`
     }
    
   }
 
-  comparingGender(person){
-    console.log(person.gender)
-    console.log(this.gender)
+comparingGender(person){
+    resultAnswer.classList.remove("hidden");
     let otherCharGender = person.gender;
     let thisGender = this.gender;
     resultAnswer.classList.add("answered");
  
     if (otherCharGender === "n/a" || thisGender === "n/a"){
       if (otherCharGender === "n/a" && thisGender === "n/a"){
-        resultAnswer.innerHTML=`<h4>Gender is such a human construction, is it not? We AI do not dabble into this.</h4>`
+        resultAnswer.innerHTML=`<h3>${this.name}:</h3><br>
+        <h4>"Gender is such a human construction, is it not? We AI do not dabble into this."</h4>`
       }
       else if (otherCharGender === "n/a"){
-        resultAnswer.innerHTML=`<h4>I am ${this.gender}, but my robot friend ${person.name} here has no gender. It is rude to ask why.</h4>`
+        resultAnswer.innerHTML=`<h3>${this.name}:</h3><br>
+        <h4>"I am ${this.gender}, but my robot friend ${person.name} here has no gender."</h4>`
       }
       else if (thisGender === "n/a"){
-        resultAnswer.innerHTML=`<h4>I have no gender. But ${person.name} is supposed to be a ${otherCharGender}.</h4>`
+        resultAnswer.innerHTML=`<h3>${this.name}:</h3><br>
+        <h4>"I have no gender. But ${person.name} is supposed to be a ${otherCharGender}."</h4>`
       }
     }
     else {
-      resultAnswer.innerHTML=`<h4>I was born as a ${thisGender}. ${person.name} is defined by the society as a ${otherCharGender}.</h4>`
+      if (thisGender === otherCharGender && thisGender !== "n/a"){
+        resultAnswer.innerHTML=`<h3>${this.name}:</h3><br>
+        <h4>"Both ${person.name} and I were born as ${thisGender}, and are defined by the society as ${otherCharGender}."</h4>`
+      }
+      else if (thisGender !== otherCharGender){
+      resultAnswer.innerHTML=`<h3>${this.name}:</h3><br>
+      <h4>"I was born as a ${thisGender}. ${person.name} is defined by the society as a ${otherCharGender}."</h4>`}
     }
 
   }
   
-  comparingWeight(person){
+comparingWeight(person){
+   
+  resultAnswer.classList.remove("hidden");
     let otherCharWeight = parseInt(person.mass)
     let thisWeight = parseInt(this.mass)
-    resultAnswer.classList.add("answered");
+    
+  resultAnswer.classList.add("answered");
     if (otherCharWeight < thisWeight){
-      if (this.name === "Obi-Wan Kenobi"){
-        resultAnswer.innerHTML=`<h4>I weigh ${this.mass} kilos and ${person.name} weights ${person.mass} kilos. I am heavier? I sense a disturbance in the force</h4>`
-      }
-      else {
-      resultAnswer.innerHTML=`<h4>I weigh ${this.mass} kilos and ${person.name} weights ${person.mass} kilos. I am heavier.</h4>`}
-    }
+      let weightResult = (thisWeight - otherCharWeight);
+      resultAnswer.innerHTML=`<h3>${this.name}:</h3><br>
+      <h4>"I weigh ${this.mass} kilos and ${person.name} weights ${person.mass} kilos. I am heavier, with ${weightResult} kilos difference."</h4>`}
+   
     else if (otherCharWeight > thisWeight){
-      resultAnswer.innerHTML=`<h4>I weigh ${this.mass} kilos and ${person.name} weights ${person.mass} kilos. I am lighter.</h4>`
+      let weightResult = (otherCharWeight - thisWeight);
+      resultAnswer.innerHTML=`<h3>${this.name}:</h3><br><h4>"I weigh ${this.mass} kilos and ${person.name} weights ${person.mass} kilos. I am therefore lighter with ${weightResult} kilos difference."</h4>`
     }
     else {
-      resultAnswer.innerHTML=`<h4>I weigh ${this.mass} kilos and ${person.name} weights ${person.mass} kilos. We share the same weight!</h4>`
+      resultAnswer.innerHTML=`<h3>${this.name}:</h3><br><h4>"I weigh ${this.mass} kilos and ${person.name} weights ${person.mass} kilos. We share the same weight!"</h4>`
     }
-  }
+}
 
-  comparingHeight(person){
+comparingHeight(person){
+    resultAnswer.classList.remove("hidden");
     let otherCharHeight = parseInt(person.height)
     let thisHeight = parseInt(this.height)
     if (otherCharHeight < thisHeight){
-      if (this.name === "Darth Vader"){
-        resultAnswer.innerHTML=`<h4>Search your feelings, you know it to be true! I am ${thisHeight} tall, and ${person.name} is measly ${otherCharHeight} short. </h4>`
-    }
-    resultAnswer.innerHTML=`<h4> I am ${thisHeight}cm tall, and ${person.name} is ${otherCharHeight} cm tall. I am therefore taller. </h4>`
+      let heightResult = (thisHeight - otherCharHeight);
+    resultAnswer.innerHTML=`<h3>${this.name}:</h3><br><h4>"I am ${thisHeight}cm tall, and ${person.name} is ${otherCharHeight} cm tall. I am therefore taller with ${heightResult} centimeters difference."</h4>`
     }
     else if (otherCharHeight > thisHeight){
-      resultAnswer.innerHTML=`<h4> I am ${thisHeight}cm tall, and ${person.name} is ${otherCharHeight} cm tall. I am therefore shorter. </h4>`
+      let heightResult = (otherCharHeight -thisHeight);
+
+      resultAnswer.innerHTML=`<h3>${this.name}:</h3><br><h4>"I am ${thisHeight}cm tall, and ${person.name} is ${otherCharHeight} cm tall. ${person.name} is ${heightResult} cm taller than me."</h4>`
     }
     else {
-      resultAnswer.innerHTML=`<h4> I am ${thisHeight}cm tall, and ${person.name} is ${otherCharHeight} cm tall. We are then the same! </h4>`
+      resultAnswer.innerHTML=`<h3>${this.name}:</h3><br><h4>"I am ${thisHeight}cm tall, and ${person.name} is ${otherCharHeight} cm tall. We are then of the same height!"</h4>`
     }
   }
 }
 
-class Comparing {
-    
-//transforming so we can read from the new Characters:
+class Comparing { 
 async compareHeight(item, character){
   item.addEventListener("click", () =>{
     if(character.name === chosenCharacters[0].name){
@@ -146,6 +160,7 @@ async compareHeight(item, character){
     } else{
       character.comparingHeight(chosenCharacters[0])
     }
+    creating.chooseNew();
   })
 }
 
@@ -156,6 +171,7 @@ async compareWeight(item, character){
     } else{
       character.comparingWeight(chosenCharacters[0])
     }
+    creating.chooseNew();
   })
 }
 
@@ -166,6 +182,7 @@ async compareHairs(item, character){
     } else{
       character.comparingHair(chosenCharacters[0])
     }
+    creating.chooseNew();
   })
 }
 
@@ -176,14 +193,13 @@ async compareGenders(item, character){
       } else{
       character.comparingGender(chosenCharacters[0])
       }
-    creating.chooseNew();
+      creating.chooseNew();
     })
   }
 }
 
-  //creating and displaying:
+//creating and displaying:
 class Create {
-
   //*-----dropdown from fetch:
   displayCharacterDropDown(characters){
     let option = "";
@@ -238,41 +254,39 @@ class Create {
    }
   //*--giving commands to buttons:
    buttons(character){
-
     const characterOneWeightButt = document.getElementById(`${character.name}Weight`);
     const characterOneHeightButt = document.getElementById(`${character.name}Height`);
     const characterOneHairButt = document.getElementById(`${character.name}Hair`);
     const characterOneGenderButt = document.getElementById(`${character.name}Gender`);
-
 
     //functions in compare class:
     compare.compareHeight(characterOneHeightButt, character);
     compare.compareWeight(characterOneWeightButt,character);
     compare.compareGenders(characterOneGenderButt, character);
     compare.compareHairs(characterOneHairButt, character);
-
   }
-
+  //*--try again button
   chooseNew(){
     let tryAgain = document.createElement("button");
     resultAnswer.appendChild(tryAgain);
-    tryAgain.innerText = "Try again?"
+    tryAgain.innerText = "Try again"
     tryAgain.classList.add("button--tryagain");
     tryAgain.addEventListener("click", (event) => {
       event.preventDefault();
       submitButton.classList.remove("hidden");
       form.classList.remove("hidden");
+      resultAnswer.innerHTML="";
       resultAnswer.classList.add("hidden");
-      renderedDiv.style.visibility ="hidden";
       const takeAway =  document.querySelector("article:first-child");
       const takeAway2 =  document.querySelector("article:last-child");
       renderedDiv.removeChild(takeAway);
       renderedDiv.removeChild(takeAway2);
     })
   }
-
-
 } 
+
+
+  
 
 //*--------Loading page
 let persons = new Character();
@@ -280,19 +294,46 @@ let creating = new Create();
 let fetching = new FetchingAPI();
 let compare = new Comparing();
 
+
+//*---loading fetch animation:
+const preload = document.getElementById("preload");
+const preloadContent = document.querySelector(".spinnerloading");
+const loading = document.getElementById("loadingChars");
+const loaderChar = document.getElementById("spinner");
+const quotes = ["Do. Or do not. There is no try. - Yoda", "May the Force be with you.- Obi-Wan Kenobi", "Your focus determines your reality. - Qui-Gon Jinn", "Never tell me the odds!- Han Solo", "I find your lack of faith disturbing. - Darth Vader", "I’m one with the Force. The Force is with me - Chirrut Îmwe", "Chewie, we’re home. - Han Solo"];
+
+const interval = 2000;
+const loadQuotes = (arr) => {
+  setInterval(() => {
+    preloadContent.innerText = arr [Math.floor(Math.random() * arr.length)];
+  }, interval)
+}
+const init = () => {
+ loadQuotes(quotes);
+}
+const loadQuotesWhileCharacters = (arr) => {
+  setInterval(() => {
+    arr [Math.floor(Math.random() * arr.length)];
+  }, interval)
+}
+const load = () => {
+  loadQuotesWhileCharacters(quotes);
+}
+
+init();
+
 //*--fetching to dropdown 
 fetching.getCharacters().then(characters => { 
+  preload.classList.add("hidden");
   creating.displayCharacterDropDown(characters)
 });
 
-//*------------Submitting form
 
+//*------------Submitting form
 const submitButton = document.getElementById("fetchData");
 
 submitButton.addEventListener("click", (event) => { 
 event.preventDefault();
-
-
   //reading the choices:
   chosenCharacters.length = 0; 
     renderedDiv.innerHTML ="";
@@ -308,48 +349,42 @@ event.preventDefault();
       renderedDiv.innerHTML = `<h3>These are not the droids you are looking for.
       Please choose two different characters!</h3>`
     }
-    else {
-          //*----giving images to character:
-      let imgCharacterOne = `./img/${chosenOneName}.png`;
-      let imgCharacterTwo = `./img/${chosenTwoName}.png`;
 
+    else {
+    //*----giving images to character:
+    let imgCharacterOne = `./img/${chosenOneName}.png`;
+    let imgCharacterTwo = `./img/${chosenTwoName}.png`;
+
+    //*setTimeout while waiting:
+    const loading = document.getElementById("loadingChars");
+    loading.classList.remove("hidden");
+    load();
+ 
     //*---fetching characters from URL
   fetching.getOnlyData(userChosenOne).then((data) => {
     let characterConstructor = data;
     let chosenCharacterOne = new Character (characterConstructor.name, characterConstructor.gender, characterConstructor.height, characterConstructor.mass, characterConstructor.hair_color, imgCharacterOne);
-        //push it and then just array it so I can get my arrayfunctions
-        chosenCharacters.push(chosenCharacterOne);
-        //displaying chosen + buttons:
-submitButton.classList.add("hidden");
-form.classList.add("hidden");
-        creating.displayChosenCharacters(imgCharacterOne, chosenCharacterOne);
-        creating.buttons(chosenCharacterOne);
-        
+    //push it and then just array it so I can get my arrayfunctions
+    chosenCharacters.push(chosenCharacterOne);
+
+    //displaying chosen + buttons:
+    submitButton.classList.add("hidden");
+    form.classList.add("hidden");
+    loading.classList.add("hidden");
+    creating.displayChosenCharacters(imgCharacterOne, chosenCharacterOne);
+    creating.buttons(chosenCharacterOne);
+    
 
   fetching.getOnlyData(userChosenTwo).then((data) => {
     let characterConstructor = data;
     let chosenCharacterTwo = new Character (characterConstructor.name, characterConstructor.gender, characterConstructor.height, characterConstructor.mass, characterConstructor.hair_color, imgCharacterTwo);
-        chosenCharacters.push(chosenCharacterTwo);
-        creating.displayChosenCharacters(imgCharacterTwo, chosenCharacterTwo);
-        creating.buttons(chosenCharacterTwo)
+    chosenCharacters.push(chosenCharacterTwo);
+    creating.displayChosenCharacters(imgCharacterTwo, chosenCharacterTwo);
+    creating.buttons(chosenCharacterTwo)
     })
   })
     }
 })
-
-// //*---------async getOnlyData
-
-// async function getOnlyData (url){
-//   try{
-//   let result = await fetch(url);
-//   let data = await result.json();
-//   return data;}
-//   catch(error){
-//     console.log(url);
-//     console.log("getOnlyData fungerar ej")
-//     console.log(error)
-//   }
-// }
 
 
 

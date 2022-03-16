@@ -10,12 +10,17 @@
 <body>
   <header>
     <img src="https://static-mh.content.disney.io/starwars/assets/navigation/sw_logo_stacked-336c62367939.png"
-    alt="logo starwars"><h1>Trivia</h1></header>
+    alt="logo starwars">
+    <h1>Trivia</h1>
+  </header>
   <main>
+
+    <div id="preload">
+      <div class="spinnerloading">
+        </div>
+    </div>
+
     <div class="wrapper">
-    <!-- <section class="video">
-      <iframe width="400" height="200" src="https://www.youtube.com/embed/vDpDhofRoXA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </section> -->
     <section>
       <div class="choose">
       <h2 class="heading">Choose characters here:</h2>
@@ -32,23 +37,19 @@
         </label>
         <select id="dropdown2" class="dropdown">
           <option>Another character</option> 
-          <!-- <option>Darth Vader</option>
-          <option>R2-D2</option>
-          <option>C-3PO</option>
-          <option>Beru Whitesun lars</option>
-          <option>Obi-Wan Kenobi</option>
-          <option>Biggs Darklighter</option>
-          <option>R5-D4</option>
-          <option>Luke Skywalker</option>
-          <option>Leia Organa</option>
-          <option>Owen Lars</option> -->
         </select>
       </span>
         <button id="fetchData">Submit</button>
       </form>
     </div>
+    <div id="loadingChars" class="loading hidden">
+      <span class="loader"
+      id="spinner">
+         
+      </span>
+    </div>
     <article id="inHereTheyShallBe">
-
+    
          
     </article>
     <article id="results">
