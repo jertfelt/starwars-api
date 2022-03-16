@@ -1,18 +1,16 @@
 School assignment in javascript!
 Here, the task was to retrieve data from an API, render it, and then compare the data. 
 
-I have also worked with:
+I have worked with:
+API : https://swapi.dev/api/people
 Classes
 Plain CSS 
 A *LOT* of DOM-handling with JS
-<<<<<<< HEAD
-
-=======
 Settimeout and working with loading fetch - animation (in this case, a loop of quotes)
+Responsive CSS
+
 ![image](https://user-images.githubusercontent.com/30622818/158669268-6f7a4f6d-1cc2-4941-a76f-ffbec876f60d.png)
 ![image](https://user-images.githubusercontent.com/30622818/158669632-b298750f-1871-4d4c-9018-e763d62ee635.png)
-
-
 ![image](https://user-images.githubusercontent.com/30622818/158640895-ead369ee-fea2-4ea5-9e00-68f4ad0117e4.png)
 ![image](https://user-images.githubusercontent.com/30622818/158640931-67b0a9cb-c2cb-4c37-abb8-2a6f8788f897.png)
 ![image](https://user-images.githubusercontent.com/30622818/158640985-964bf353-70fd-4af6-95ae-236623e35726.png)
